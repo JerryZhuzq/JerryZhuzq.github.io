@@ -54,7 +54,7 @@
 <meta property="og:description" content="Ideas: This problem has two solutions. Both solutions use dynamic programming. The first solution maintains three status for each stock so that it runs faster with the time complexity O(n). The second">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-07T06:33:52.000Z">
-<meta property="article:modified_time" content="2020-01-07T06:55:49.615Z">
+<meta property="article:modified_time" content="2020-01-07T12:56:58.076Z">
 <meta property="article:author" content="Zhongqi Zhu">
 <meta property="article:tag" content="Dynamic Programming">
 <meta name="twitter:card" content="summary">
@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-07 14:33:52 / Modified: 14:55:49" itemprop="dateCreated datePublished" datetime="2020-01-07T14:33:52+08:00">2020-01-07</time>
+              <time title="Created: 2020-01-07 14:33:52 / Modified: 20:56:58" itemprop="dateCreated datePublished" datetime="2020-01-07T14:33:52+08:00">2020-01-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,6 +235,8 @@
 
       
         <p>Ideas: This <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank" rel="noopener">problem</a> has two solutions. Both solutions use dynamic programming. The first solution maintains three status for each stock so that it runs faster with the time complexity O(n). The second solution uses classical dynamic programming equation which runs slower with the time complexity O(n^2).</p>
+<a id="more"></a>
+
 <h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h4><p>There are three actions: buy, sell and do nothing. Relatively there are three status: hold a stock, cooldown and can buy a stock. We can conclude that: <code>hold[i] = max( hold[i-1], canBuy[i-1] - prices[i] )</code>. <code>coolDown[i] =hold[i-1] + prices[i]</code>. <code>canBuy[i] = max(coolDown[i-1], canBuy[i-1])</code> .</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxProfit1</span><span class="params">(prices)</span> -&gt; int:</span></span><br><span class="line">    <span class="keyword">if</span> len(prices) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    prof = [-prices[<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">        <span class="comment"># prof[0] stands for hold status, prof[1] stands for coolDown status, prof[2] stands for canBuy status</span></span><br><span class="line">        prof[<span class="number">0</span>], prof[<span class="number">1</span>], prof[<span class="number">2</span>] = max(prof[<span class="number">0</span>], prof[<span class="number">2</span>]-prices[i]), prof[<span class="number">0</span>] + prices[i], max(prof[<span class="number">1</span>], prof[<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> max(prof)</span><br></pre></td></tr></table></figure>
 
