@@ -48,13 +48,13 @@
 
   <meta name="description" content="Usage for if &quot;__name__&quot; &#x3D;&#x3D; &quot;__main__&quot;:If the module we import, in addition to defined functions, still has executable code. Then python interpreter would execute this code which is">
 <meta property="og:type" content="article">
-<meta property="og:title" content="module&#39;s name in python">
+<meta property="og:title" content="Module&#39;s Name in Python">
 <meta property="og:url" content="http://yoursite.com/2020/01/08/name-main/index.html">
 <meta property="og:site_name" content="Zhongqi Zhu">
 <meta property="og:description" content="Usage for if &quot;__name__&quot; &#x3D;&#x3D; &quot;__main__&quot;:If the module we import, in addition to defined functions, still has executable code. Then python interpreter would execute this code which is">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-08T06:11:02.000Z">
-<meta property="article:modified_time" content="2020-01-08T06:49:53.112Z">
+<meta property="article:modified_time" content="2020-01-08T07:10:21.049Z">
 <meta property="article:author" content="Zhongqi Zhu">
 <meta name="twitter:card" content="summary">
 
@@ -70,7 +70,7 @@
   };
 </script>
 
-  <title>module's name in python | Zhongqi Zhu</title>
+  <title>Module's Name in Python | Zhongqi Zhu</title>
   
 
 
@@ -197,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          module's name in python
+          Module's Name in Python
         </h1>
 
         <div class="post-meta">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-08 14:11:02 / Modified: 14:49:53" itemprop="dateCreated datePublished" datetime="2020-01-08T14:11:02+08:00">2020-01-08</time>
+              <time title="Created: 2020-01-08 14:11:02 / Modified: 15:10:21" itemprop="dateCreated datePublished" datetime="2020-01-08T14:11:02+08:00">2020-01-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,6 +235,8 @@
       
         <h4 id="Usage-for-if-quot-name-quot-quot-main-quot"><a href="#Usage-for-if-quot-name-quot-quot-main-quot" class="headerlink" title="Usage for if &quot;__name__&quot; == &quot;__main__&quot;:"></a>Usage for <code>if &quot;__name__&quot; == &quot;__main__&quot;:</code></h4><p>If the module we import, in addition to defined functions, still has executable code. Then python interpreter would execute this code which is unexpected. Therefore, if we write executable code in modules, better put this code in</p>
 <p><code>if &quot;__name__&quot; == &quot;__main__&quot;:</code> so that the code under “if” condition won’t be executed unless to execute its module directly. Since only the name of the module to be executed directly is <code>&quot;__main__&quot;</code>.</p>
+<a id="more"></a>
+
 <p>model3.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># __name__ is a hidden variable in Python which stands for the name of the module</span></span><br><span class="line"><span class="comment"># only the name of the module to be executed directly is "__main__".</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(<span class="string">'call foo()'</span>)</span><br><span class="line">    foo()</span><br><span class="line">    print(<span class="string">'call bar()'</span>)</span><br><span class="line">    bar()</span><br></pre></td></tr></table></figure>
 
@@ -257,7 +259,10 @@
     <a href="/2020/01/07/392-Is-Subsequence/" rel="prev" title="392. Is Subsequence">
       <i class="fa fa-chevron-left"></i> 392. Is Subsequence
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/08/advanced-object-oriented/" rel="next" title="Advanced Object-Oriented">
+      Advanced Object-Oriented <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -333,7 +338,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
