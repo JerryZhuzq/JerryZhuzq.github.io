@@ -46,20 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="Solutions: This problem(link) generates from the House Robber. Houses in this problem are not at a straight line but a cycle which means you can not rob both the first and the last house at the same t">
+  <meta name="description" content="Usage for if &quot;__name__&quot; &#x3D;&#x3D; &quot;__main__&quot;:If the module we import, in addition to defined functions, still has executable code. Then python interpreter would execute this code which is">
 <meta property="og:type" content="article">
-<meta property="og:title" content="213. House Robber II">
-<meta property="og:url" content="http://yoursite.com/2020/01/04/213-House-Robber-II/index.html">
+<meta property="og:title" content="module&#39;s name in python">
+<meta property="og:url" content="http://yoursite.com/2020/01/08/name-main/index.html">
 <meta property="og:site_name" content="Zhongqi Zhu">
-<meta property="og:description" content="Solutions: This problem(link) generates from the House Robber. Houses in this problem are not at a straight line but a cycle which means you can not rob both the first and the last house at the same t">
+<meta property="og:description" content="Usage for if &quot;__name__&quot; &#x3D;&#x3D; &quot;__main__&quot;:If the module we import, in addition to defined functions, still has executable code. Then python interpreter would execute this code which is">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-04T02:00:30.000Z">
-<meta property="article:modified_time" content="2020-01-07T12:58:42.856Z">
+<meta property="article:published_time" content="2020-01-08T06:11:02.000Z">
+<meta property="article:modified_time" content="2020-01-08T06:49:53.112Z">
 <meta property="article:author" content="Zhongqi Zhu">
-<meta property="article:tag" content="Dynamic Programming">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/01/04/213-House-Robber-II/">
+<link rel="canonical" href="http://yoursite.com/2020/01/08/name-main/">
 
 
 <script id="page-configurations">
@@ -71,7 +70,7 @@
   };
 </script>
 
-  <title>213. House Robber II | Zhongqi Zhu</title>
+  <title>module's name in python | Zhongqi Zhu</title>
   
 
 
@@ -185,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/04/213-House-Robber-II/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/08/name-main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ZHONGQIZHU-AVATAR.jpeg">
@@ -198,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          213. House Robber II
+          module's name in python
         </h1>
 
         <div class="post-meta">
@@ -207,24 +206,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-01-04 10:00:30" itemprop="dateCreated datePublished" datetime="2020-01-04T10:00:30+08:00">2020-01-04</time>
+              <time title="Created: 2020-01-08 14:11:02 / Modified: 14:49:53" itemprop="dateCreated datePublished" datetime="2020-01-08T14:11:02+08:00">2020-01-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-07 20:58:42" itemprop="dateModified" datetime="2020-01-07T20:58:42+08:00">2020-01-07</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">Leetcode</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
             </span>
@@ -240,14 +233,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Solutions: This problem(<a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="noopener">link</a>) generates from the <a href="https://leetcode.com/problems/house-robber/" target="_blank" rel="noopener">House Robber</a>. Houses in this problem are not at a straight line but a cycle which means you can not rob both the first and the last house at the same time. To solve this trap we can divide the problem into two subproblems. 1. Compute the optimal value for house[0 : n-1]. 2. Compute the optimal value for house[1 : n]. The maximum value of these two is the final answer for this problem. </p>
-<a id="more"></a>
+        <h4 id="Usage-for-if-quot-name-quot-quot-main-quot"><a href="#Usage-for-if-quot-name-quot-quot-main-quot" class="headerlink" title="Usage for if &quot;__name__&quot; == &quot;__main__&quot;:"></a>Usage for <code>if &quot;__name__&quot; == &quot;__main__&quot;:</code></h4><p>If the module we import, in addition to defined functions, still has executable code. Then python interpreter would execute this code which is unexpected. Therefore, if we write executable code in modules, better put this code in</p>
+<p><code>if &quot;__name__&quot; == &quot;__main__&quot;:</code> so that the code under “if” condition won’t be executed unless to execute its module directly. Since only the name of the module to be executed directly is <code>&quot;__main__&quot;</code>.</p>
+<p>model3.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># __name__ is a hidden variable in Python which stands for the name of the module</span></span><br><span class="line"><span class="comment"># only the name of the module to be executed directly is "__main__".</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(<span class="string">'call foo()'</span>)</span><br><span class="line">    foo()</span><br><span class="line">    print(<span class="string">'call bar()'</span>)</span><br><span class="line">    bar()</span><br></pre></td></tr></table></figure>
 
-<p># Bottom-Up</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        memo = [<span class="number">-1</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        res1, res2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        memo[<span class="number">0</span>] = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> memo[<span class="number">0</span>]</span><br><span class="line">        memo[<span class="number">1</span>] = max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> memo[<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)<span class="number">-1</span>):</span><br><span class="line">            memo[i] = max(memo[i<span class="number">-2</span>]+nums[i], memo[i<span class="number">-1</span>])</span><br><span class="line">        <span class="comment"># Value 1</span></span><br><span class="line">        res1 = memo[len(nums)<span class="number">-2</span>]</span><br><span class="line">        </span><br><span class="line">        memo[<span class="number">1</span>] = nums[<span class="number">1</span>]</span><br><span class="line">        memo[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)):</span><br><span class="line">            memo[i] = max(memo[i<span class="number">-2</span>]+nums[i], memo[i<span class="number">-1</span>])</span><br><span class="line">        <span class="comment"># Value 2</span></span><br><span class="line">        res2 = memo[len(nums)<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> max(res1, res2)</span><br></pre></td></tr></table></figure>
-
-<p>​            </p>
-
+<p>test.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># When import module3, the code under if condition in module3 won't be executed since its name is module3 rather than "__main__"</span></span><br><span class="line"><span class="keyword">import</span> module3</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -255,9 +247,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
-          </div>
 
         
 
@@ -265,13 +254,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/01/happy-new-year/" rel="prev" title="happy new year">
-      <i class="fa fa-chevron-left"></i> happy new year
+    <a href="/2020/01/07/392-Is-Subsequence/" rel="prev" title="392. Is Subsequence">
+      <i class="fa fa-chevron-left"></i> 392. Is Subsequence
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/06/337-House-Robber-III/" rel="next" title="337. House Robber III">
-      337. House Robber III <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -331,6 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage-for-if-quot-name-quot-quot-main-quot"><span class="nav-number">1.</span> <span class="nav-text">Usage for if &quot;__name__&quot; &#x3D;&#x3D; &quot;__main__&quot;:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
