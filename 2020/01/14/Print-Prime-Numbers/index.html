@@ -54,7 +54,7 @@
 <meta property="og:description" content="Sieve of Eratosthenes Create a list contains number from 2 to n.  Initially, set p to 2 which is the first prime number.  Starting from p^2, mark p*(p+1), p*(p+2), p*(p+3)… as not prime numbers  Find">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-14T02:45:37.000Z">
-<meta property="article:modified_time" content="2020-01-14T03:43:03.814Z">
+<meta property="article:modified_time" content="2020-01-14T08:32:51.325Z">
 <meta property="article:author" content="Zhongqi Zhu">
 <meta name="twitter:card" content="summary">
 
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-14 10:45:37 / Modified: 11:43:03" itemprop="dateCreated datePublished" datetime="2020-01-14T10:45:37+08:00">2020-01-14</time>
+              <time title="Created: 2020-01-14 10:45:37 / Modified: 16:32:51" itemprop="dateCreated datePublished" datetime="2020-01-14T10:45:37+08:00">2020-01-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,6 +242,8 @@
 </li>
 <li><p>Find the smallest number greater than p that is not marked in the list, and repeat from step 3. If there is no such number, stop.</p>
 <p><strong>Time Complexity: O(nlog(log(n)))</strong></p>
+<a id="more"></a>
+
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SieveOfEratosthenes</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># Create a boolean array "prime[0..n]" and initialize </span></span><br><span class="line">    <span class="comment"># all entries it as true. A value in prime[i] will </span></span><br><span class="line">    <span class="comment"># finally be false if i is Not a prime, else true. </span></span><br><span class="line">    prime = [<span class="literal">True</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">    p = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (p * p &lt;= n):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># If prime[p] is not changed, then it is a prime </span></span><br><span class="line">        <span class="keyword">if</span> (prime[p] == <span class="literal">True</span>):</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Update all multiples of p </span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(p * p, n + <span class="number">1</span>, p):</span><br><span class="line">                prime[i] = <span class="literal">False</span></span><br><span class="line">        p += <span class="number">1</span></span><br></pre></td></tr></table></figure>
