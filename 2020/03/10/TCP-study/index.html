@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/jerry-apple-touch.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/jerry-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/jerry-16x16-next.png">
+  <link rel="mask-icon" href="/images/jerry.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="TCPTCP is a transport layer protocol provides connection-oriented, reliable service to applications. It supports unicast only. TCP connection uses socket: the combination of an IP address and a port n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP-study">
+<meta property="og:url" content="http://yoursite.com/2020/03/10/TCP-study/index.html">
+<meta property="og:site_name" content="Zhongqi Zhu">
+<meta property="og:description" content="TCPTCP is a transport layer protocol provides connection-oriented, reliable service to applications. It supports unicast only. TCP connection uses socket: the combination of an IP address and a port n">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-10T18:48:31.000Z">
+<meta property="article:modified_time" content="2020-03-11T19:28:02.504Z">
+<meta property="article:author" content="Zhongqi Zhu">
+<meta property="article:tag" content="IAP">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/10/TCP-study/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>TCP-study | Zhongqi Zhu</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zhongqi Zhu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/TCP-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ZHONGQIZHU-AVATAR.jpeg">
+      <meta itemprop="name" content="Zhongqi Zhu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhongqi Zhu">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TCP-study
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-10 14:48:31" itemprop="dateCreated datePublished" datetime="2020-03-10T14:48:31-04:00">2020-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-11 15:28:02" itemprop="dateModified" datetime="2020-03-11T15:28:02-04:00">2020-03-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>TCP is a transport layer protocol provides connection-oriented, reliable service to applications. It supports unicast only. TCP connection uses socket: the combination of an IP address and a port number which is uniquely identified by the two end sockets. TCP connection establishment: two end TCP modules allocate required resources for the connection and negotiate the value of the parameter uses such as maximum segment size(MSS), given by the receiver side, and receiving buffer size(advertised window, WIN). Initial sequence number(ISN), specified by the sender side.</p>
+<a id="more"></a>
+
+<h5 id="Three-way-Handshake"><a href="#Three-way-Handshake" class="headerlink" title="Three-way Handshake"></a>Three-way Handshake</h5><p>1.An end host initiates a TCP connection by sending a SYN packet with ISN, n in sequence number field, an empty payload field and MSS, TCP receiving window size and SYN flag bit is set. </p>
+<p>2.The other end replies a SYN packet with ACK=n+1, its own ISN, MSS and own TCP receiving window size.</p>
+<p>3.The initiating host sends an acknowledgement: ACK=m+1</p>
+<h5 id="Four-way-Handshake"><a href="#Four-way-Handshake" class="headerlink" title="Four-way Handshake"></a>Four-way Handshake</h5><p>A TCP connection is full duplex so that each end of the connection has to shut down its one-way data flow. After termination performed, the connection must stay in TIME_WAIT state for twice the Maximum Segment Life(MSL, 2a) to wait for delayed segments. If an unrecorable error is detected, either end can close the TCP connection by sending a RST segment.</p>
+<p>TCP Half-Close. One end TCP sends a packet with the FIN flag set. The other end acknowledges the FIN segment. The data flow in the opposite direction still works.</p>
+<h5 id="TCP-Data-Flow"><a href="#TCP-Data-Flow" class="headerlink" title="TCP Data Flow"></a>TCP Data Flow</h5><p>TCP provides a byte-stream connection to the application layer. There are sending buffer and receving buffer in both sender module and receiver module.</p>
+<h5 id="TCP-Error-Control"><a href="#TCP-Error-Control" class="headerlink" title="TCP Error Control"></a>TCP Error Control</h5><p>TCP segment may get lost in network since TCP uses IP service and IP is connectionless and unreliable.. TCP provides error control for application data by retransmitting lost or errored segments.</p>
+<p>Each data byte is assigned a unique sequence number. TCP uses cumulative acknowledgements(by default) to inform the sender of the last correctly received byte in order. Error detection is performed in each layer of the TCP/IP stack by means of header checksums, and error packets are dropped. </p>
+<p>If a segment is dropped, an acknowledgement will be sent to the sender for the 1st byte in this segment(expecting this byte). A gap in the received sequence numbers indicates a transmission loss or wrong order, and an acknowledgement for the first byte in the gap may be sent to the sender.</p>
+<p>Selective acknowledgement (SACK) is used to report multiple lost segments.</p>
+<h5 id="TCP-Retransmission"><a href="#TCP-Retransmission" class="headerlink" title="TCP Retransmission"></a>TCP Retransmission</h5><p>A transmission timer is started by a sender when it sends out a TCP segemt and if no ACK received when the time expires, this segment is retransmitted.</p>
+<p>An overly small value causes frequent timeouts and unnecessary retransmission. A too large value causes a large delay when a segment gets lost. The value of retransmission timer should be larger than but of the same magnitude as a measurement of the Round Trip Time(RTT). TCP continuously measure the RTT and updates the retransmission timer value, defined as Retransmission TimeOut(RTO), dynamically.</p>
+<p>RTT: the time difference between sending a target segment and receving the ACK for the segment is measured. min(RTO) = 1 second.</p>
+<p>RTT measurement is performed at the both ends of a TCP connection, each end may run the measurement only on one target segment at any time. According to Karn’s algorithm: RTTs and RTTd are not updated based on retransmission. 500ms is the smallest unit of both RTT measurements and RTO timeout counts.</p>
+<p>RTO Exponential Backoff: This algorithm is used to update RTO when the retransmission time expires for a retransmitted segment(no RTT measurement available). RTO is doubled each time until it reaches 64 sec.</p>
+<h5 id="TCP-Interactive-Data-Flow"><a href="#TCP-Interactive-Data-Flow" class="headerlink" title="TCP Interactive Data Flow"></a>TCP Interactive Data Flow</h5><p>Telnet, ssh. The server echoes the key back to user and piggybacks the ack for the key stroke sent by user. To reduce the number of small segments to be more efficient: Delayed Acknowledgement and Nagle Algorithm.</p>
+<p>Delayed Acknowledgement timer goes off every K ms if there is new data to send during this period, the ACK can be piggybacked with the data segment. Otherwise, an ACK segment is sent till K ms.</p>
+<p>Nagle algorithm: each TCP connection can have only one small segment outstanding and all subsequent bytes are bufferd until an AXK for the first segment is received. Then, these buffered bytes are sent in a single segment. More efficient than sending multiple segments with the cost of increased delay for the user.</p>
+<h5 id="TCP-Congestion-Control-and-Flow-Control"><a href="#TCP-Congestion-Control-and-Flow-Control" class="headerlink" title="TCP Congestion Control and Flow Control"></a>TCP Congestion Control and Flow Control</h5><p>TCP supports bulk data flows, where a large number of bytes are sent through the TCP connection. Application: email, FTP, HTTP. The source always wants to increase its sending rate to achieve high throughput but they should be bounded by the maximum rate that can be allowed without causing network congestion or receiver buffer overflow for a low packet loss rate.</p>
+<p>Congestion control and flow control are used to cope with congestion problems. TCP uses <strong>slow start</strong> and <strong>congestion avoidance</strong> to react to congestion in routers and to avoid receiver buffer overflow.</p>
+<h6 id="TCP-Sliding-Window-Flow-Control"><a href="#TCP-Sliding-Window-Flow-Control" class="headerlink" title="TCP Sliding Window Flow Control"></a>TCP Sliding Window Flow Control</h6><p>The receiver advertises the maximum amount of data it can receive(the Advertised Window, or awnd) and the sender is not allowed to send more data than the awnd. However, congestion can still occur. </p>
+<h6 id="TCP-congestion-Control-Avoidance"><a href="#TCP-congestion-Control-Avoidance" class="headerlink" title="TCP congestion Control(Avoidance)"></a>TCP congestion Control(Avoidance)</h6><p>TCP needs to adjust its sending rate in reaction to the rate fluctuations of other flows sharing the same buffer. A new TCP connection should increase its rate as quickly as possible to take all the available bandwidth. At the sane time, TCP should slow down its rate increase when the sending rate is higher than some threshold. The sender can infer congestion when a transmission timer goes off. The receiver reports congestion implicitly by sending duplicate acks.</p>
+<p>The receiver provides two parameters to influence the senders transmission rate: awnd and MSS. The sender maintains two variables for congestion control: congestion window size(cwnd) to upper bound the sender rate, slow start threshold(ssthresh). The size of sliding window = min(cwnd, awnd) for tthe sender.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> cwnd &lt;= ssthresh:</span><br><span class="line">  cwnd = cwnd + segsize(MSS)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  cwnd = cwnd + segsize * segsize / cwnd + segsize / <span class="number">8</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># when a congestion occurs(indicated by retrasmission timeout), reset</span></span><br><span class="line">sstthresh = max[<span class="number">2</span>*segsize, min(cwnd, awnd)/<span class="number">2</span>]</span><br><span class="line">cwnd = <span class="number">1</span> segsize.  <span class="comment"># into slow start phase</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set cwnd = 1 segsize(1 MSS bytes) whenever starting traffic on a new connection, or whenever increasing traffic after congestion was experienced</span></span><br><span class="line"><span class="comment"># ssthresh takes an initial value of 65535 bytes, and changes only when a congestion occurs</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="Fast-Retransmit"><a href="#Fast-Retransmit" class="headerlink" title="Fast Retransmit"></a>Fast Retransmit</h6><p>After receiving three duplicate acks, the sender retransmits the segments without waiting for the retransmitting timer to expire. After the retransmission, congestion avoidance is performed.</p>
+<h6 id="Fast-Recovery"><a href="#Fast-Recovery" class="headerlink" title="Fast Recovery"></a>Fast Recovery</h6><p>Used when three or more duplicated ACKs are received.</p>
+<p>1) after the third duplicate ACK is received: ssthresh = max[2 segsize, min(cwnd, awnd)/2], retransmit the missing segment, and then cwnd = sshthresh + 3 segment</p>
+<p>2) for each additional duplicate ack received: cwnd = cwnd + segsize.   ttransmit a segment if allowed by the window size.</p>
+<p>3) when the ack for the retransmitted segment arrives(new ack): cwnd = ssthresh + segsize</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/IAP/" rel="tag"># IAP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/08/Map-Reduce/" rel="prev" title="Map-Reduce">
+      <i class="fa fa-chevron-left"></i> Map-Reduce
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP"><span class="nav-number">1.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Three-way-Handshake"><span class="nav-number">1.1.</span> <span class="nav-text">Three-way Handshake</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Four-way-Handshake"><span class="nav-number">1.2.</span> <span class="nav-text">Four-way Handshake</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-Data-Flow"><span class="nav-number">1.3.</span> <span class="nav-text">TCP Data Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-Error-Control"><span class="nav-number">1.4.</span> <span class="nav-text">TCP Error Control</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-Retransmission"><span class="nav-number">1.5.</span> <span class="nav-text">TCP Retransmission</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-Interactive-Data-Flow"><span class="nav-number">1.6.</span> <span class="nav-text">TCP Interactive Data Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-Congestion-Control-and-Flow-Control"><span class="nav-number">1.7.</span> <span class="nav-text">TCP Congestion Control and Flow Control</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP-Sliding-Window-Flow-Control"><span class="nav-number">1.7.1.</span> <span class="nav-text">TCP Sliding Window Flow Control</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP-congestion-Control-Avoidance"><span class="nav-number">1.7.2.</span> <span class="nav-text">TCP congestion Control(Avoidance)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Fast-Retransmit"><span class="nav-number">1.7.3.</span> <span class="nav-text">Fast Retransmit</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Fast-Recovery"><span class="nav-number">1.7.4.</span> <span class="nav-text">Fast Recovery</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhongqi Zhu"
+      src="/images/ZHONGQIZHU-AVATAR.jpeg">
+  <p class="site-author-name" itemprop="name">Zhongqi Zhu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhongqi Zhu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
