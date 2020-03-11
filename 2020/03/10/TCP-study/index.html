@@ -54,7 +54,7 @@
 <meta property="og:description" content="TCPTCP is a transport layer protocol provides connection-oriented, reliable service to applications. It supports unicast only. TCP connection uses socket: the combination of an IP address and a port n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-10T18:48:31.000Z">
-<meta property="article:modified_time" content="2020-03-11T19:28:02.504Z">
+<meta property="article:modified_time" content="2020-03-11T22:05:19.187Z">
 <meta property="article:author" content="Zhongqi Zhu">
 <meta property="article:tag" content="IAP">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-11 15:28:02" itemprop="dateModified" datetime="2020-03-11T15:28:02-04:00">2020-03-11</time>
+                <time title="Modified: 2020-03-11 18:05:19" itemprop="dateModified" datetime="2020-03-11T18:05:19-04:00">2020-03-11</time>
               </span>
 
           
@@ -249,7 +249,7 @@
 <p>RTO Exponential Backoff: This algorithm is used to update RTO when the retransmission time expires for a retransmitted segment(no RTT measurement available). RTO is doubled each time until it reaches 64 sec.</p>
 <h5 id="TCP-Interactive-Data-Flow"><a href="#TCP-Interactive-Data-Flow" class="headerlink" title="TCP Interactive Data Flow"></a>TCP Interactive Data Flow</h5><p>Telnet, ssh. The server echoes the key back to user and piggybacks the ack for the key stroke sent by user. To reduce the number of small segments to be more efficient: Delayed Acknowledgement and Nagle Algorithm.</p>
 <p>Delayed Acknowledgement timer goes off every K ms if there is new data to send during this period, the ACK can be piggybacked with the data segment. Otherwise, an ACK segment is sent till K ms.</p>
-<p>Nagle algorithm: each TCP connection can have only one small segment outstanding and all subsequent bytes are bufferd until an AXK for the first segment is received. Then, these buffered bytes are sent in a single segment. More efficient than sending multiple segments with the cost of increased delay for the user.</p>
+<p>Nagle algorithm: each TCP connection can have only one small segment outstanding and all subsequent bytes are bufferd until an ACK for the first segment is received. Then, these buffered bytes are sent in a single segment. More efficient than sending multiple segments with the cost of increased delay for the user.</p>
 <h5 id="TCP-Congestion-Control-and-Flow-Control"><a href="#TCP-Congestion-Control-and-Flow-Control" class="headerlink" title="TCP Congestion Control and Flow Control"></a>TCP Congestion Control and Flow Control</h5><p>TCP supports bulk data flows, where a large number of bytes are sent through the TCP connection. Application: email, FTP, HTTP. The source always wants to increase its sending rate to achieve high throughput but they should be bounded by the maximum rate that can be allowed without causing network congestion or receiver buffer overflow for a low packet loss rate.</p>
 <p>Congestion control and flow control are used to cope with congestion problems. TCP uses <strong>slow start</strong> and <strong>congestion avoidance</strong> to react to congestion in routers and to avoid receiver buffer overflow.</p>
 <h6 id="TCP-Sliding-Window-Flow-Control"><a href="#TCP-Sliding-Window-Flow-Control" class="headerlink" title="TCP Sliding Window Flow Control"></a>TCP Sliding Window Flow Control</h6><p>The receiver advertises the maximum amount of data it can receive(the Advertised Window, or awnd) and the sender is not allowed to send more data than the awnd. However, congestion can still occur. </p>
