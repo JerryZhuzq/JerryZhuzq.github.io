@@ -54,7 +54,7 @@
 <meta property="og:description" content="TCPTCP is a transport layer protocol provides connection-oriented, reliable service to applications. It supports unicast only. TCP connection uses socket: the combination of an IP address and a port n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-10T18:48:31.000Z">
-<meta property="article:modified_time" content="2020-03-11T22:05:19.187Z">
+<meta property="article:modified_time" content="2020-05-08T03:40:11.664Z">
 <meta property="article:author" content="Zhongqi Zhu">
 <meta property="article:tag" content="IAP">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-11 18:05:19" itemprop="dateModified" datetime="2020-03-11T18:05:19-04:00">2020-03-11</time>
+                <time title="Modified: 2020-05-07 23:40:11" itemprop="dateModified" datetime="2020-05-07T23:40:11-04:00">2020-05-07</time>
               </span>
 
           
@@ -253,14 +253,14 @@
 <h5 id="TCP-Congestion-Control-and-Flow-Control"><a href="#TCP-Congestion-Control-and-Flow-Control" class="headerlink" title="TCP Congestion Control and Flow Control"></a>TCP Congestion Control and Flow Control</h5><p>TCP supports bulk data flows, where a large number of bytes are sent through the TCP connection. Application: email, FTP, HTTP. The source always wants to increase its sending rate to achieve high throughput but they should be bounded by the maximum rate that can be allowed without causing network congestion or receiver buffer overflow for a low packet loss rate.</p>
 <p>Congestion control and flow control are used to cope with congestion problems. TCP uses <strong>slow start</strong> and <strong>congestion avoidance</strong> to react to congestion in routers and to avoid receiver buffer overflow.</p>
 <h6 id="TCP-Sliding-Window-Flow-Control"><a href="#TCP-Sliding-Window-Flow-Control" class="headerlink" title="TCP Sliding Window Flow Control"></a>TCP Sliding Window Flow Control</h6><p>The receiver advertises the maximum amount of data it can receive(the Advertised Window, or awnd) and the sender is not allowed to send more data than the awnd. However, congestion can still occur. </p>
-<h6 id="TCP-congestion-Control-Avoidance"><a href="#TCP-congestion-Control-Avoidance" class="headerlink" title="TCP congestion Control(Avoidance)"></a>TCP congestion Control(Avoidance)</h6><p>TCP needs to adjust its sending rate in reaction to the rate fluctuations of other flows sharing the same buffer. A new TCP connection should increase its rate as quickly as possible to take all the available bandwidth. At the sane time, TCP should slow down its rate increase when the sending rate is higher than some threshold. The sender can infer congestion when a transmission timer goes off. The receiver reports congestion implicitly by sending duplicate acks.</p>
+<h6 id="TCP-congestion-Control-Avoidance"><a href="#TCP-congestion-Control-Avoidance" class="headerlink" title="TCP congestion Control(Avoidance)"></a>TCP congestion Control(Avoidance)</h6><p>TCP needs to adjust its sending rate in reaction to the rate fluctuations of other flows sharing the same buffer. A new TCP connection should increase its rate as quickly as possible to take all the available bandwidth. At the same time, TCP should slow down its rate increase when the sending rate is higher than some threshold. The sender can infer congestion when a transmission timer goes off. The receiver reports congestion implicitly by sending duplicate acks.</p>
 <p>The receiver provides two parameters to influence the senders transmission rate: awnd and MSS. The sender maintains two variables for congestion control: congestion window size(cwnd) to upper bound the sender rate, slow start threshold(ssthresh). The size of sliding window = min(cwnd, awnd) for tthe sender.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> cwnd &lt;= ssthresh:</span><br><span class="line">  cwnd = cwnd + segsize(MSS)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  cwnd = cwnd + segsize * segsize / cwnd + segsize / <span class="number">8</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># when a congestion occurs(indicated by retrasmission timeout), reset</span></span><br><span class="line">sstthresh = max[<span class="number">2</span>*segsize, min(cwnd, awnd)/<span class="number">2</span>]</span><br><span class="line">cwnd = <span class="number">1</span> segsize.  <span class="comment"># into slow start phase</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set cwnd = 1 segsize(1 MSS bytes) whenever starting traffic on a new connection, or whenever increasing traffic after congestion was experienced</span></span><br><span class="line"><span class="comment"># ssthresh takes an initial value of 65535 bytes, and changes only when a congestion occurs</span></span><br></pre></td></tr></table></figure>
 
 <h6 id="Fast-Retransmit"><a href="#Fast-Retransmit" class="headerlink" title="Fast Retransmit"></a>Fast Retransmit</h6><p>After receiving three duplicate acks, the sender retransmits the segments without waiting for the retransmitting timer to expire. After the retransmission, congestion avoidance is performed.</p>
 <h6 id="Fast-Recovery"><a href="#Fast-Recovery" class="headerlink" title="Fast Recovery"></a>Fast Recovery</h6><p>Used when three or more duplicated ACKs are received.</p>
-<p>1) after the third duplicate ACK is received: ssthresh = max[2 segsize, min(cwnd, awnd)/2], retransmit the missing segment, and then cwnd = sshthresh + 3 segment</p>
-<p>2) for each additional duplicate ack received: cwnd = cwnd + segsize.   ttransmit a segment if allowed by the window size.</p>
+<p>1) after the third duplicate ACK is received: ssthresh = max[2 segsize, min(cwnd, awnd)/2], retransmit the missing segment, and then cwnd = sshthresh + 3 segsize</p>
+<p>2) for each additional duplicate ack received: cwnd = cwnd + segsize. transmit a segment if allowed by the window size.</p>
 <p>3) when the ack for the retransmitted segment arrives(new ack): cwnd = ssthresh + segsize</p>
 
     </div>
